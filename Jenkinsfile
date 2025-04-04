@@ -1,4 +1,3 @@
-// For terraform
 pipeline {
     agent any
 
@@ -9,7 +8,6 @@ pipeline {
         ARM_TENANT_ID       = credentials('AZURE_TENANT_ID')
     }
 
-
     stages {
         stage('Checkout Code') {
             steps {
@@ -17,7 +15,6 @@ pipeline {
             }
         }
 
-        
         stage('Terraform Init') {
             steps {
                 bat 'terraform init'
@@ -47,7 +44,8 @@ pipeline {
                 '''
             }
         }
-         stage('Build .NET App') {
+
+        stage('Build .NET App') {
             steps {
                 dir('WebApiJenkins') { // Adjust to your .NET project folder
                     bat 'dotnet publish -c Release -o publish'
@@ -61,12 +59,6 @@ pipeline {
                 powershell Compress-Archive -Path WebApiJenkins\\publish\\* -DestinationPath publish.zip -Force
                 az webapp deployment source config-zip --resource-group jenkins-palak-rg --name jenkins-palak-app123 --src publish.zip
                 '''
-            }
-        }   
-    }
-}
-                    bat "az webapp deploy --resource-group $RESOURCE_GROUP --name $APP_SERVICE_NAME --src-path ./publish.zip --type zip"
-                }
             }
         }
     }
