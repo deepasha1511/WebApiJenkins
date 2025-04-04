@@ -33,7 +33,7 @@ variable "location" {
 variable "app_service_plan_name" {
   description = "App Service Plan name"
   type        = string
-  default     = "jenkins-palak-plan"
+  default     = "jenkins-deepa-plan"
 }
 
 variable "app_service_name" {
