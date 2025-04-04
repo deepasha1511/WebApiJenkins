@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment {
-        AZURE_CREDENTIALS_ID = 'jenkins-pipeline-sp'
-        RESOURCE_GROUP = 'Resource-app-service'
-        APP_SERVICE_NAME = 'deepashaN'
+        AZURE_CREDENTIALS_ID = 'jenkins-pipeline2-sp'
+        RESOURCE_GROUP = 'deepResourceGroup'
+        APP_SERVICE_NAME = 'deepAppService'
     }
 
     stages {
